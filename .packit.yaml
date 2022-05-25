@@ -1,0 +1,29 @@
+# See the documentation for more information:
+# https://packit.dev/docs/configuration/
+
+specfile_path: golang-github-10gen-escaper.spec
+
+# add or remove files that should be synced
+synced_files:
+    - golang-github-10gen-escaper.spec
+    - .packit.yaml
+
+# name in upstream package repository or registry (e.g. in PyPI)
+upstream_package_name: golang-github-10gen-escaper
+# downstream (Fedora) RPM package name
+downstream_package_name: golang-github-10gen-escaper
+
+actions:
+    post-upstream-clone: "wget https://src.fedoraproject.org/rpms/golang-github-10gen-escaper/raw/rawhide/f/golang-github-10gen-escaper.spec -O golang-github-10gen-escaper.spec"
+
+upstream_project_url: https://github.com/majamassarini/escaper
+
+jobs:
+- job: copr_build
+  trigger: pull_request
+  metadata:
+    targets: fedora-stable
+- job: copr_build
+  trigger: commit
+  metadata:
+    targets: fedora-stable

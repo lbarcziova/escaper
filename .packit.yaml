@@ -14,7 +14,7 @@ upstream_package_name: golang-github-10gen-escaper
 downstream_package_name: golang-github-10gen-escaper
 
 actions:
-    post-upstream-clone: "wget https://src.fedoraproject.org/rpms/golang-github-10gen-escaper/raw/rawhide/f/golang-github-10gen-escaper.spec -O golang-github-10gen-escaper.spec"
+    post-upstream-clone: "bash -c \"curl -s https://src.fedoraproject.org/rpms/golang-github-10gen-escaper/raw/rawhide/f/golang-github-10gen-escaper.spec | sed -e '/^Version*/d'  -e 's/^%global commit.*/Version:   0/g'> golang-github-10gen-escaper.spec\""
 
 upstream_project_url: https://github.com/majamassarini/escaper
 
